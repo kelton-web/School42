@@ -6,9 +6,12 @@
 /*   By: ksemedo- <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:22:50 by ksemedo-          #+#    #+#             */
-/*   Updated: 2021/12/06 11:33:37 by ksemedo-         ###   ########.fr       */
+/*   Updated: 2021/12/21 13:56:53 by ksemedo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_prinft_utils.h"
+
 int ft_strlen(char *str)
 {
 	int i;
@@ -33,21 +36,16 @@ int ft_putstr(char *str)
     return (i);
 }
 
-char putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);	
-}
-
 int ft_putnbr(int nb)
 {
 	long n;
 	char count;
 	
+	count = 0;
 	n = nb;
 	if (n < 0)
 	{
-		count += ft_putchar('-', 1);
+		count += ft_putchar('-');
 		count += n += -1;
 	}
 	if (n == 10)
@@ -57,7 +55,7 @@ int ft_putnbr(int nb)
 	}
 	else
 	{
-		count += ft_putchar(n + 48, 1);
+		count += ft_putchar(n + 48);
 	}
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: ksemedo- <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 13:53:30 by ksemedo-          #+#    #+#             */
-/*   Updated: 2021/12/06 10:45:53 by ksemedo-         ###   ########.fr       */
+/*   Updated: 2021/12/23 12:18:10 by ksemedo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ int	ft_format_find(va_list args, char tab)
 	if (tab == 's')
 		compteur +=	ft_putstr(va_arg(args, char *));
 	if (tab == 'p')
-		compteur +=	ft_putchar('p');
-	if (tab == 'd')
-		compteur +=	ft_putchar('d');
-	if (tab == 'i')
-		compteur +=	ft_putchar('i');
+		compteur +=	ft_put_ptr(va_arg(args, unsigned long long));
+	if (tab == 'd' || tab == 'i')
+		compteur +=	ft_putnbr(va_arg(args, int));
 	if (tab == 'u')
 		compteur +=	ft_putchar('u');
-	if (tab == 'x')
+	if (tab == 'x' || tab == 'X')
 		compteur +=	ft_putchar('x');
 	if (tab == '%')
 		compteur += ft_putchar('%');
