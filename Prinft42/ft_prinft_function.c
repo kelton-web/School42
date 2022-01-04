@@ -5,57 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksemedo- <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 10:22:50 by ksemedo-          #+#    #+#             */
-/*   Updated: 2021/12/21 13:56:53 by ksemedo-         ###   ########.fr       */
+/*   Created: 2022/01/04 08:45:12 by ksemedo-          #+#    #+#             */
+/*   Updated: 2022/01/04 08:45:20 by ksemedo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_prinft_utils.h"
+#include "ft_printf.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 		i++;
-	return (i);	
+	return (i);
 }
 
-int ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
-    int i;
+	int	i;
 
-    i = ft_strlen(str);
-    if (str == NULL)
-    {
-        write(1, "(null)", 6);
-        return (6);
-    }
+	i = ft_strlen(str);
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	write(1, str, i);
-    return (i);
+	return (i);
 }
 
-int ft_putnbr(int nb)
+size_t	get_digits(int n)
 {
-	long n;
-	char count;
-	
-	count = 0;
-	n = nb;
+	size_t	i;
+
+	i = 1;
+	while (n / 10)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char		*str_num;
+	size_t		digits;
+	long int	num;
+
+	num = n;
+	digits = get_digits(n);
 	if (n < 0)
 	{
-		count += ft_putchar('-');
-		count += n += -1;
+		num *= -1;
+		digits++;
 	}
-	if (n == 10)
+	str_num = (char *)malloc(sizeof(char) * (digits + 1));
+	if (!str_num)
+		return (NULL);
+	*(str_num + digits) = 0;
+	while (digits--)
 	{
-		count += ft_putnbr(n / 10);
-		count += ft_putnbr(n % 10);
+		*(str_num + digits) = num % 10 + '0';
+		num = num / 10;
 	}
-	else
-	{
-		count += ft_putchar(n + 48);
-	}
-	return (count);
+	if (n < 0)
+		*(str_num + 0) = '-';
+	return (str_num);
 }

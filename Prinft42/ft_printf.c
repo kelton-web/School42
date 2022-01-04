@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksemedo- <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 13:53:30 by ksemedo-          #+#    #+#             */
-/*   Updated: 2021/12/23 12:18:10 by ksemedo-         ###   ########.fr       */
+/*   Created: 2022/01/04 08:49:05 by ksemedo-          #+#    #+#             */
+/*   Updated: 2022/01/04 08:49:11 by ksemedo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_prinft_utils.h"
+#include "ft_printf.h"
 
 int	ft_putchar(int c)
 {
@@ -24,17 +24,17 @@ int	ft_format_find(va_list args, char tab)
 
 	compteur = 0;
 	if (tab == 'c')
-		compteur +=	ft_putchar(va_arg(args, int));
+		compteur += ft_putchar(va_arg (args, int));
 	if (tab == 's')
-		compteur +=	ft_putstr(va_arg(args, char *));
+		compteur += ft_putstr(va_arg (args, char *));
 	if (tab == 'p')
-		compteur +=	ft_put_ptr(va_arg(args, unsigned long long));
+		compteur += ft_put_ptr(va_arg (args, unsigned long long));
 	if (tab == 'd' || tab == 'i')
-		compteur +=	ft_putnbr(va_arg(args, int));
+		compteur += ft_write_d(va_arg (args, int));
 	if (tab == 'u')
-		compteur +=	ft_putchar('u');
+		compteur += ft_print_u(va_arg (args, unsigned int));
 	if (tab == 'x' || tab == 'X')
-		compteur +=	ft_putchar('x');
+		compteur += ft_print_x(va_arg (args, unsigned int), tab);
 	if (tab == '%')
 		compteur += ft_putchar('%');
 	return (compteur);
@@ -64,58 +64,4 @@ int	ft_printf(const char *tab, ...)
 	}
 	va_end(args);
 	return (compteur);
-}
-
-int main()
-{
-	char *str = "LOOLdd";
-	int adrss = 167;
-	unsigned int unbr = 354687524;
-	char c = '%';
-
-
-	printf("==========================\n");
-	printf("test avec des char\n");
-	printf("==========================\n");
-
-	printf("ft nbr: %d\n",ft_printf("%c\n", c));
-	printf("sy nbr: %d\n",printf("%c\n", c));
-
-
-	printf("==========================\n");
-	printf("test avec des string\n");
-	printf("==========================\n");
-
-	printf("ft nbr: %d\n",ft_printf("%s\n", str));
-	printf("sy nbr: %d\n",printf("%s\n", str));
-
-	printf("==========================\n");
-	printf("test avec des Int\n");
-	printf("==========================\n");
-
-	printf("ft nbr : %d\n",ft_printf("%d\n", adrss));
-	printf("sy nbr: %d\n",printf("%d\n", adrss));
-
-	printf("==========================\n");
-	printf("test avec des Unsigned Int\n");
-	printf("==========================\n");
-
-	printf("ft nbr: %d\n",ft_printf("%u\n", unbr));
-	printf("sy nbr: %d\n",printf("%u\n", unbr));
-
-
-	printf("==========================\n");
-	printf("test avec des Hexadecimal\n");
-	printf("==========================\n");
-
-	printf("ft nbr: %d\n",ft_printf("%x\n", adrss));
-	printf("sy nbr: %d\n",printf("%x\n", adrss));
-
-	printf("==========================\n");
-	printf("test avec des Adresse\n");
-	printf("==========================\n");
-
-	printf("ft nbr: %d\n",ft_printf("%p\n", &adrss));
-	printf("sy nbr: %d\n",printf("%p\n", &adrss));
-
 }

@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ksemedo- <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/21 12:12:57 by ksemedo-          #+#    #+#              #
-#    Updated: 2021/12/21 13:57:40 by ksemedo-         ###   ########.fr        #
+#    Created: 2021/12/10 20:37:27 by keltonsemed       #+#    #+#              #
+#    Updated: 2022/01/03 15:37:45 by ksemedo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_printf ft_prinft_function 
+SRC = ft_printf ft_prinft_function ft_put_ptr ft_print_x ft_print_u ft_write_d
 
 SRCS		= $(addsuffix .c, ${SRC})
 
